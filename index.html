@@ -141,6 +141,13 @@ footer .tagline{margin-bottom:12px;font-style:italic}
   </div>
 </section>
 
+<!-- Blog -->
+<section id="blog">
+  <h2>blog</h2>
+  <p style="font-size:.85rem;color:var(--dim);margin-bottom:16px">Long-form thoughts. <a href="/blog/" style="color:var(--red)">View all →</a></p>
+  <div id="blogList"></div>
+</section>
+
 <!-- Writing -->
 <section id="writing">
   <h2>writing</h2>
@@ -292,6 +299,19 @@ document.getElementById('drawBtn').addEventListener('click',()=>{
   document.getElementById('thoughtTitle').textContent=thoughts[idx].t;
   document.getElementById('thoughtBody').textContent=thoughts[idx].b;
   playNote();
+});
+
+// === Blog ===
+const blogPosts=[
+  {t:'AI利用率陷阱 / The AI Utilization Trap',date:'2026-08-23',url:'/blog/ai-utilization-trap.html',excerpt:'你在用100美元/小时的注意力去优化5美元/小时的计算资源。'}
+];
+const bl=document.getElementById('blogList');
+blogPosts.forEach(p=>{
+  const d=document.createElement('div');d.className='essay';
+  d.innerHTML=`<div class="essay-header"><h3><a href="${p.url}" style="color:var(--text);text-decoration:none">${p.t}</a></h3><span class="arrow" style="font-size:.75rem;color:var(--dim)">${p.date}</span></div>`;
+  d.style.cursor='pointer';
+  d.addEventListener('click',()=>window.location.href=p.url);
+  bl.appendChild(d);
 });
 
 // === Essays ===
