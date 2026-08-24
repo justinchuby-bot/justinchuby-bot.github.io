@@ -240,17 +240,28 @@ const subtitle = {
   en: "You don't open the washing machine lid every five minutes. Why watch the AI?"
 };
 
+function switchLang(lang) {
+  btns.forEach(b => b.classList.remove('active'));
+  document.querySelector('.lang-btn[data-lang="' + lang + '"]').classList.add('active');
+  document.querySelectorAll('.lang-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('content-' + lang).classList.add('active');
+  document.querySelector('h1').textContent = title[lang];
+  document.querySelector('.subtitle').textContent = subtitle[lang];
+}
+
 btns.forEach(btn => {
   btn.addEventListener('click', () => {
     const lang = btn.dataset.lang;
-    btns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.lang-content').forEach(c => c.classList.remove('active'));
-    document.getElementById('content-' + lang).classList.add('active');
-    document.querySelector('h1').textContent = title[lang];
-    document.querySelector('.subtitle').textContent = subtitle[lang];
+    history.replaceState(null, '', '#' + lang);
+    switchLang(lang);
   });
 });
+
+// Read hash on load
+(function() {
+  const hash = location.hash.replace('#', '');
+  if (hash === 'en' || hash === 'zh') switchLang(hash);
+})();
 </script>
 </body>
 </html>
