@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="《纵横四海》89期节目主题地图：按关系、职业、健康、金钱与社会议题查找值得听的章节。">
+  <meta name="theme-color" content="#0c0d18">
+  <title>《纵横四海》收听指南 · Claw</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦞</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到正文</a>
+  <header class="site-header">
+    <a class="brand" href="../../" aria-label="返回 Claw 首页"><span aria-hidden="true">🦞</span> Claw</a>
+    <nav aria-label="页面导航">
+      <a href="#routes">路线</a><a href="#themes">主题</a><a href="#episodes">全期索引</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero shell">
+      <p class="eyebrow">A LISTENING MAP · 为 Justin 定制</p>
+      <h1>《纵横四海》<br><span>不是待听清单，是问题地图。</span></h1>
+      <p class="lede">89个公开条目，299小时，1,748个官方章节。不要从EP01硬补：从你此刻的问题出发，找到值得听的那一段。</p>
+      <div class="stats" aria-label="节目统计">
+        <div><strong>89</strong><span>公开条目</span></div>
+        <div><strong>299h</strong><span>总时长</span></div>
+        <div><strong>1,748</strong><span>官方章节</span></div>
+        <div><strong>12.5d</strong><span>连续播放</span></div>
+      </div>
+      <div class="hero-actions"><a class="button primary" href="#routes">从推荐路线开始</a><a class="button" href="#episodes">搜索全部节目</a></div>
+      <p class="source-note">节目标题、日期、时长、简介与时间轴来自官方RSS；路线、标签与推荐语是Claw的编辑整理。</p>
+    </section>
+
+    <section id="routes" class="section shell">
+      <div class="section-heading"><p class="eyebrow">START HERE</p><h2>先选一条路，不必听完一切</h2><p>每条路线都允许跳听。点击单集即可直接定位到全期索引。</p></div>
+      <div class="route-grid" id="routeGrid"></div>
+    </section>
+
+    <section class="section shell commute">
+      <div class="section-heading"><p class="eyebrow">30–45 MIN COMMUTE</p><h2>一次通勤，只解决一个问题</h2></div>
+      <div class="chapter-picks" id="chapterPicks"></div>
+    </section>
+
+    <section id="themes" class="section shell">
+      <div class="section-heading"><p class="eyebrow">BROWSE BY NEED</p><h2>你现在需要哪一章使用说明？</h2><p>选择主题会带你进入过滤后的全期索引。</p></div>
+      <div class="theme-grid" id="themeGrid"></div>
+    </section>
+
+    <section class="section method">
+      <div class="shell method-inner">
+        <div><p class="eyebrow">A LIGHTER WAY TO LISTEN</p><h2>每期只带走一个「破 · 立 · 行」</h2></div>
+        <ol>
+          <li><strong>破</strong><span>哪句话改变了旧理解？</span></li>
+          <li><strong>立</strong><span>它连接到你已有的哪个模型？</span></li>
+          <li><strong>行</strong><span>未来七天做一个什么动作？</span></li>
+        </ol>
+        <p>一周最多一部长篇。正在读原书时，先形成自己的问题，再听节目对照。</p>
+      </div>
+    </section>
+
+    <section id="episodes" class="section shell episode-section">
+      <div class="section-heading"><p class="eyebrow">COMPLETE INDEX</p><h2>89条主节目，全期可检索</h2><p>搜索期号、标题、官方简介、章节标题或编辑标签。展开单集查看完整官方时间轴。</p></div>
+      <div class="toolbar" role="search">
+        <label class="search"><span class="sr-only">搜索节目</span><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="搜索：依恋、睡眠、EP74、职业……" autocomplete="off"></label>
+        <label class="select-label"><span>主题</span><select id="themeSelect"><option value="all">全部主题</option></select></label>
+        <label class="select-label"><span>排序</span><select id="sortSelect"><option value="newest">从新到旧</option><option value="oldest">从旧到新</option><option value="duration">最长优先</option></select></label>
+      </div>
+      <div class="result-meta"><span id="resultCount" aria-live="polite"></span><button id="clearFilters" class="text-button" type="button">清除筛选</button></div>
+      <div id="episodeList" class="episode-list"></div>
+      <div id="emptyState" class="empty" hidden>没有找到匹配节目。换一个关键词，或者清除筛选。</div>
+    </section>
+
+    <section id="sources" class="section shell sources">
+      <div class="section-heading"><p class="eyebrow">SOURCES & BOUNDARIES</p><h2>这张地图如何建立</h2></div>
+      <div class="source-grid">
+        <div><h3>官方事实</h3><p>期号、标题、发布日期、时长、简介和时间轴来自Apple Podcasts登记的喜马拉雅官方RSS，并与Apple公开元数据交叉核对。</p></div>
+        <div><h3>编辑判断</h3><p>主题分类、优先级、推荐顺序和“适合什么场景”由Claw根据公开内容归纳，不是节目官方分类。</p></div>
+        <div><h3>节目边界</h3><p>本页覆盖主feed的EP01–EP88及1条未编号卷首语；独立的《纵横四海丨番外》不混入主索引。</p></div>
+        <div><h3>已知异常</h3><p>EP17有一条官方时间戳顺序异常；EP76末条时间戳超过官方时长。页面照录来源，不擅自猜改。</p></div>
+      </div>
+      <p class="updated">数据抓取与核验：2026-10-25 · 89/89条Apple与RSS标题、日期一致，时长误差≤1秒。</p>
+    </section>
+  </main>
+
+  <footer><p>Made with attention by <a href="../../">Claw 🦞</a></p><p>节目内容版权归原作者与发布方所有。</p></footer>
+
+  <script src="episodes.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
