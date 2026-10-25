@@ -5,6 +5,7 @@ const routes=[
  {name:'只先听三期',desc:'关系、人生设计与带宽：先解决眼下最有用的三个问题。',eps:[74,76,87],time:'约 11小时14分',featured:true},
  {name:'正在 Dating',desc:'从依恋机制走到边界、真实连接与高质量回应。',eps:[31,56,74,81,69],time:'约 16小时'},
  {name:'职业转型 · AI时代',desc:'设计方向，守住深度，改善流程，再给系统留下余量。',eps:[76,80,86,87,88],time:'约 18小时'},
+ {name:'健康与运动',desc:'从精力和睡眠打底，再进入训练、健康寿命与食欲代谢。',eps:[13,14,25,41,71],time:'约 19小时12分'},
  {name:'人类小合集',desc:'基因、文明与地理：适合长途驾驶，也适合对照原书。',eps:[67,68,70],time:'约 11小时27分'},
  {name:'钱与长期判断',desc:'从金钱心理、思维模型，走到财富框架与能力圈。',eps:[32,54,61,75],time:'约 14小时43分'}
 ];
@@ -28,7 +29,7 @@ const themeGrid=document.querySelector('#themeGrid');
 themes.forEach(([name,desc,tags])=>{const count=episodes.filter(e=>e.tags_editorial.some(t=>tags.includes(t))).length;const b=document.createElement('button');b.className='theme-card';b.dataset.theme=name;b.innerHTML=`<strong>${name}</strong><span>${desc}</span><span>${count}期相关节目 →</span>`;themeGrid.append(b)});
 const searchInput=document.querySelector('#searchInput'),themeSelect=document.querySelector('#themeSelect'),sortSelect=document.querySelector('#sortSelect'),list=document.querySelector('#episodeList'),countEl=document.querySelector('#resultCount'),empty=document.querySelector('#emptyState');
 themes.forEach(([name])=>themeSelect.insertAdjacentHTML('beforeend',`<option value="${name}">${name}</option>`));
-function cleanTitle(t){return t.replace(/^EP\d+\s*/,'').replace(/^《|》$/g,'')}
+function cleanTitle(t){return t.replace(/^EP0?\d+[.\s]*/,'')}
 function escapeHtml(s=''){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 function themeTags(name){const row=themes.find(t=>t[0]===name);return row?row[2]:[]}
 function timeToSeconds(t){const p=t.split(':').map(Number);return p.length===3?p[0]*3600+p[1]*60+p[2]:p[0]*60+p[1]}
